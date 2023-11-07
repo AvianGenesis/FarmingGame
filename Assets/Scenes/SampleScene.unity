@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 392187593}
   - component: {fileID: 392187592}
   - component: {fileID: 392187591}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: PlantSpotTrigger
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352229508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.74, y: 0.06, z: 7.39}
+  m_LocalPosition: {x: 264, y: 0.06, z: 7.39}
   m_LocalScale: {x: 1, y: 0.3, z: 1}
   m_Children:
   - {fileID: 392187590}
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 1371256121}
   - component: {fileID: 1371256120}
   - component: {fileID: 1371256119}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +583,7 @@ PrefabInstance:
     - target: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 268
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36,
         type: 3}
@@ -729,6 +729,21 @@ PrefabInstance:
         type: 3}
       propertyPath: rayMask.m_Bits
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6751123445685108978, guid: 6bacecc4f3df9584198879c73a6b6c36,
+        type: 3}
+      propertyPath: spotMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6751123445685108978, guid: 6bacecc4f3df9584198879c73a6b6c36,
+        type: 3}
+      propertyPath: outlineMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6751123445685108978, guid: 6bacecc4f3df9584198879c73a6b6c36,
+        type: 3}
+      propertyPath: terrainMask.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}

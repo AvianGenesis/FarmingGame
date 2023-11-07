@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
 {
-    public LayerMask rayMask;
+    public LayerMask outlineMask;
+    public LayerMask terrainMask;
 
     private bool psHitbox;
     private Transform highlight;
@@ -27,18 +28,25 @@ public class PlayerInteractions : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
         Debug.DrawRay(ray.origin, ray.direction * 10, Color.green);
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, rayMask))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, outlineMask))
         {
-            highlight = hit.transform;
-            highlight.gameObject.GetComponent<PlantSpotScript>().HighlightOn();
+            if (psHitbox)
+            {
+                highlight = hit.transform;
+                highlight.gameObject.GetComponent<PlantSpotScript>().HighlightOn();
+            }
 
-            Debug.Log("Raycast with " + hit.collider.name + " of mask " + hit.transform.gameObject.layer);
+            Debug.Log("Raycast with " + hit.collider.name + " of mask " + hit.transform.gameObject.layer + " with normal " + hit.normal);
+        }
+        else if (Physics.Raycast(ray, out hit, Mathf.Infinity, terrainMask))
+        {
+            Debug.Log("Raycast with " + hit.collider.name + " of mask " + hit.transform.gameObject.layer + " with normal " + hit.normal);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(gameObject.name + " triggered " + other.name);
+        Debug.Log(gameObject.name + " triggered " + other.name + " of tag " + other.tag);
         if(other.tag == "PlantSpotTrigger")
         {
             psHitbox = true;
