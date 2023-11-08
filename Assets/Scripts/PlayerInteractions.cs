@@ -9,11 +9,13 @@ public class PlayerInteractions : MonoBehaviour
 
     private bool psHitbox;
     private Transform highlight;
+    private Terrain terrain;
 
     // Start is called before the first frame update
     void Start()
     {
         psHitbox = false;
+        Screen.SetResolution(320, 240, true);
     }
 
     // Update is called once per frame
@@ -34,14 +36,36 @@ public class PlayerInteractions : MonoBehaviour
             {
                 highlight = hit.transform;
                 highlight.gameObject.GetComponent<PlantSpotScript>().HighlightOn();
+
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    highlight.gameObject.GetComponent<PlantSpotScript>().Grow();
+                }
             }
 
-            Debug.Log("Raycast with " + hit.collider.name + " of mask " + hit.transform.gameObject.layer + " with normal " + hit.normal);
+            //Debug.Log("Raycast with " + hit.collider.name + " of mask " + hit.transform.gameObject.layer + " with normal " + hit.normal);
         }
         else if (Physics.Raycast(ray, out hit, Mathf.Infinity, terrainMask))
         {
-            Debug.Log("Raycast with " + hit.collider.name + " of mask " + hit.transform.gameObject.layer + " with normal " + hit.normal);
+            terrain = hit.transform.gameObject.GetComponent<Terrain>();
+            //Debug.Log("Raycast with " + hit.collider.name + " of mask " + hit.transform.gameObject.layer + " with normal " + hit.normal + " at point " + hit.point);
+            if (hit.normal.Equals(Vector3.up))
+            {
+                //Debug.Log("Spot had good normal at terrain coordinate (" + WorldCoorToTerrCoor(hit.point).x + ", " + WorldCoorToTerrCoor(hit.point).z + ")");
+            }
         }
+    }
+
+    private Vector3 WorldCoorToTerrCoor(Vector3 worldCoor)
+    {
+        Vector3 ret = new Vector3();
+        Terrain ter = Terrain.activeTerrain;
+        ret = worldCoor - ter.GetPosition();
+        ret.x /= ter.terrainData.size.x;
+        ret.y /= ter.terrainData.size.y;
+        ret.z /= ter.terrainData.size.z;
+
+        return ret;
     }
 
     private void OnTriggerEnter(Collider other)
