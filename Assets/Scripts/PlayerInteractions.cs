@@ -23,7 +23,7 @@ public class PlayerInteractions : MonoBehaviour
     {
         if(highlight != null)
         {
-            highlight.gameObject.GetComponent<PlantSpotScript>().HighlightOff();
+            //highlight.gameObject.GetComponent<PlantSpotScript>().HighlightOff();
             highlight = null;
         }
 
@@ -35,7 +35,7 @@ public class PlayerInteractions : MonoBehaviour
             if (psHitbox)
             {
                 highlight = hit.transform;
-                highlight.gameObject.GetComponent<PlantSpotScript>().HighlightOn();
+                //highlight.gameObject.GetComponent<PlantSpotScript>().HighlightOn();
 
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
@@ -84,7 +84,7 @@ public class PlayerInteractions : MonoBehaviour
             Debug.Log("Inside plant trigger");
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), 5, 8))
             {
-                other.transform.parent.GetComponent<PlantSpotScript>().HighlightOn();
+                //other.transform.parent.GetComponent<PlantSpotScript>().HighlightOn();
             }
         }
     }
@@ -97,7 +97,7 @@ public class PlayerInteractions : MonoBehaviour
             Debug.Log("Exit plant trigger");
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), 5, 8))
             {
-                other.transform.parent.GetComponent<PlantSpotScript>().HighlightOff();
+                //other.transform.parent.GetComponent<PlantSpotScript>().HighlightOff();
             }
         }
     }

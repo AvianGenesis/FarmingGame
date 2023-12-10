@@ -12,7 +12,7 @@ public class DisableOutline : MonoBehaviour
 
     IEnumerator WaitHere()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         gameObject.GetComponent<Outline>().enabled = false;
         Destroy(this);
     }
